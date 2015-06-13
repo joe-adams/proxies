@@ -2,13 +2,14 @@
   "name": "proxies",
   "version": "1.0.0",
   "description": "",
-  "main": "devProxy.js",
+  "main": "proxyFrontEnd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joe",
   "license": "ISC",
   "dependencies": {
-    "http-proxy": "^1.11.1"
+    "http-proxy": "^1.11.1",
+    "node-static": "^0.7.6"
   }
 }

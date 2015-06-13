@@ -1,9 +1,10 @@
 var http = require('http');
 var httpProxy = require('http-proxy');
 var url = require('url');
+var config=require('./config.js');
 
 var emberServer=httpProxy.createProxyServer({
-            target: 'http://localhost:4200',
+            target: 'http://localhost:'+config.emberPort,
             secure: false
         }).on('error',function(){
         	//The app shuts down if you don't handle the error.
@@ -16,6 +17,7 @@ var yahooServer=httpProxy.createProxyServer({
             target: 'http://ichart.yahoo.com',
             secure: false
         }).on('error',function(){
+            //I guess this server shouldn't really be down.
         	console.log('it looks like the server is down.');
         });
 
@@ -33,5 +35,5 @@ http.createServer(function(request,response){
 		emberServer.web(request, response);
 	}
 
-}).listen(5000);
-console.log('Server running');
+}).listen(config.proxyFrontEndOutgoingPort);
+console.log('Proxy Front End Server running on port '+config.proxyFrontEndOutgoingPort);
